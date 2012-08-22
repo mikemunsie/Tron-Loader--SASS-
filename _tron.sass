@@ -1,0 +1,51 @@
+/**
+ * TRON BUTTON
+ * 
+ * Usage: 
+ * +tron($color: #2187e7, $class: ".tron_blue", $width: 30px, $height: 30px, $speed: 1s)
+ * +tron($color: #0F0, $class: ".tron_green", $width: 500px, $height: 500px, $speed: 2s)
+ * <element class="tron_blue"></element>
+ * <element class="tron_green"></element>
+ *
+ * Inspired by this sweet ass animation: http://www.alessioatzeni.com/wp-content/tutorials/html-css/CSS3-loading-animation-loop/index.html
+ */
+
+$tron_count: 0
+@mixin tron($color: #2187e7, $class: ".tron", $width: 30px, $height: 30px, $speed: 1s)
+  $tron_count: $tron_count + 1
+  @-moz-keyframes spinPulse#{$tron_count}
+    0% 
+      -moz-transform: rotate(160deg) 
+      opacity: 0 
+      box-shadow: 0 0 1px $color
+    50% 
+      -moz-transform: rotate(145deg) 
+      opacity: 1
+    100% 
+      -moz-transform: rotate(-320deg) 
+      opacity: 0
+  @-webkit-keyframes spinPulse#{$tron_count}
+    0%
+      -webkit-transform: rotate(160deg) 
+      opacity: 0 
+      box-shadow: 0 0 1px $color
+    50%
+      -webkit-transform: rotate(145deg) 
+      opacity: 1
+    100% 
+      -webkit-transform: rotate(-320deg) 
+      opacity: 0
+  #{$class}
+    display: block
+    background-color: rgba(0,0,0,0)
+    border: ($width+$height)/2/10 solid rgba($color, 0.9)
+    opacity: .9
+    border-left: ($width+$height)/2/10 solid rgba(0,0,0,0)
+    border-right: ($width+$height)/2/10 solid rgba(0,0,0,0)
+    border-radius: ($width+$height)/2
+    box-shadow: 0 0 ($width+$height)/2/2 $color
+    width: $width
+    height: $height
+    position: relative
+    -moz-animation: spinPulse#{$tron_count} #{$speed} infinite ease-in-out
+    -webkit-animation: spinPulse#{$tron_count} #{$speed} infinite linear
